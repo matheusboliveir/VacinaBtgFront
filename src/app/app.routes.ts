@@ -1,14 +1,20 @@
 import { Routes } from '@angular/router';
 import { ListComponent } from './pages/list/list.component';
+import { Person } from './core/@types/Person';
+import { Vacine } from './core/@types/Vacine';
+import { peopleResolver } from './resolvers/people.resolver';
+import { vacinesResolver } from './resolvers/vacines.resolver';
 
 export const routes: Routes = [
   {
     path: 'people',
-    component: ListComponent,
+    resolve: { table: peopleResolver },
+    component: ListComponent<Person>,
   },
   {
     path: 'vacines',
-    component: ListComponent,
+    resolve: { table: vacinesResolver },
+    component: ListComponent<Vacine>,
   },
   {
     path: '**',
