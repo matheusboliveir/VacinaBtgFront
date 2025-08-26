@@ -4,7 +4,6 @@ import { VacinesService } from '../core/services/vacines.service';
 import { map, Observable } from 'rxjs';
 import { TableProps } from '../core/@types/List';
 import { Vacine, VacineTypeEnum } from '../core/@types/Vacine';
-import { DoseTypeEnum } from '../core/@types/Dose';
 
 export const vacinesResolver: ResolveFn<Observable<TableProps<Vacine>>> = (
   route,
@@ -21,7 +20,7 @@ export const vacinesResolver: ResolveFn<Observable<TableProps<Vacine>>> = (
           {
             name: 'editar',
             color: 'warning',
-            link: 'editar',
+            link: 'edit',
           },
         ],
         columns: [

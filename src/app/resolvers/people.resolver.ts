@@ -20,7 +20,7 @@ export const peopleResolver: ResolveFn<Observable<TableProps<Person>>> = (
           {
             name: 'editar',
             color: 'warning',
-            link: 'editar',
+            link: 'edit',
           },
           {
             name: 'Ver Cartão',
