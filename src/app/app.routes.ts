@@ -5,6 +5,7 @@ import { Vacine } from './core/@types/Vacine';
 import { peopleResolver } from './resolvers/people.resolver';
 import { vacinesResolver } from './resolvers/vacines.resolver';
 import { EditVacineComponent } from './pages/edit-vacine/edit-vacine.component';
+import { EditPeopleComponent } from './pages/edit-people/edit-people.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,14 @@ export const routes: Routes = [
         path: '',
         resolve: { table: peopleResolver },
         component: ListComponent<Person>,
+      },
+      {
+        path: 'edit',
+        component: EditPeopleComponent,
+      },
+      {
+        path: 'add',
+        component: EditPeopleComponent,
       },
     ],
   },

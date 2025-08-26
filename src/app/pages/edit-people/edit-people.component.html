@@ -1,0 +1,37 @@
+<h2 class="mb-5">
+  {{ person ? "Editar pessoa: " + person.nome : "Cadastrar pessoa" }}
+</h2>
+
+<form [formGroup]="personForm" class="row g-3" (ngSubmit)="submit()">
+  <div class="col-12">
+    <label for="inputNome" class="form-label">Nome</label>
+    <input
+      formControlName="nome"
+      type="text"
+      class="form-control"
+      id="inputNome"
+    />
+  </div>
+  <div class="col-12">
+    <select formControlName="sexo" class="form-select" aria-label="Sexo">
+      <option selected>Sexo</option>
+      <option [value]="0">MASCULINO</option>
+      <option [value]="1">FEMININO</option>
+      <option [value]="2">OUTRO</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <label for="inputIdade" class="form-label"> Idade </label>
+    <input
+      formControlName="idade"
+      type="number"
+      class="form-control"
+      id="inputIdade"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary col-12">
+      {{ person ? "Editar" : "Cadastrar" }}
+    </button>
+  </div>
+</form>
