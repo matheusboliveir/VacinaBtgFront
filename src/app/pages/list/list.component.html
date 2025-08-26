@@ -1,1 +1,43 @@
-<p>list works!</p>
+<div>
+  <h2>Listagem de {{ title }}</h2>
+  <a href="">Cadastrar</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      @for (column of tableColumns; track $index) {
+      <th scope="col">{{ column.label }}</th>
+      } @if (tableActions) {
+      <th>Ações</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of tableItems; track $index) {
+    <tr>
+      @for (column of tableColumns; track $index) {
+      <td>
+        {{
+          column.formatter
+            ? column.formatter(item[column.key])
+            : item[column.key]
+        }}
+      </td>
+      } @if (tableActions) {
+      <td class="d-flex gap-2">
+        @for (action of tableActions; track $index) {
+        <button
+          type="button"
+          [routerLink]="action.link"
+          class="btn btn-{{ action.color }}"
+        >
+          {{ action.name }}
+        </button>
+        }
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
