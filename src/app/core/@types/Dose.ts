@@ -2,6 +2,7 @@ export interface Dose {
   id: number;
   tipo: DoseTypeEnum;
   numero: number;
+  vacina?: string;
 }
 
 export enum DoseTypeEnum {

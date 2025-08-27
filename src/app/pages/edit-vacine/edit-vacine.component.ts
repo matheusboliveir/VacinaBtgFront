@@ -43,6 +43,14 @@ export class EditVacineComponent implements OnInit {
     });
   }
 
+  public deleteVacine() {
+    if (!this.vacine) return;
+    this.vacineService.delete(this.vacine.id).subscribe(() => {
+      alert('Vacina deletada!');
+      this.router.navigate(['../']);
+    });
+  }
+
   public submit() {
     if (this.vacineForm.valid) {
       const formValue = this.vacineForm.value as Omit<Vacine, 'doses' | 'id'>;
@@ -59,6 +67,7 @@ export class EditVacineComponent implements OnInit {
           })
           .subscribe(() => {
             alert('Vacina Editada!');
+            this.router.navigate(['../']);
           });
       } else {
         this.vacineService
@@ -71,6 +80,7 @@ export class EditVacineComponent implements OnInit {
           })
           .subscribe(() => {
             alert('Vacina Criada!');
+            this.router.navigate(['../']);
           });
       }
     } else {
