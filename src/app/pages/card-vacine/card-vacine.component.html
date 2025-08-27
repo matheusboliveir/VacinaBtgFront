@@ -1,0 +1,29 @@
+<h1>Carteira de Vacinação do {{ person.nome }}</h1>
+
+<table class="table table-fixed table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Doses / Vacinas</th>
+      @for (vacine of vacineNames; track $index) {
+      <th scope="col">{{ vacine }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of maxDoseArr; track $index; let i = $index) {
+    <tr class="card-vacine-row">
+      <td>{{ i + 1 }} Dose</td>
+      @for (dose of doses[i]; track $index) {
+      <td class="bg-{{ dose ? 'success' : 'secondary' }}"></td>
+      }
+    </tr>
+    } @for (item of maxReforcoArr; track $index; let i = $index) {
+    <tr class="card-vacine-row">
+      <td>{{ i + 1 }} Reforço</td>
+      @for (dose of doses[maxReforco + i]; track $index) {
+      <td class="bg-{{ dose ? 'success' : 'secondary' }}"></td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
