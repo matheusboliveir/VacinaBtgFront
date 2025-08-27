@@ -2,6 +2,12 @@
   {{ vacine ? "Editar vacina: " + vacine.nome : "Cadastrar vacina" }}
 </h2>
 
+@if (vacine) {
+<button (click)="deleteVacine()" type="button" class="mb-5 btn btn-danger">
+  Deletar
+</button>
+}
+
 <form [formGroup]="vacineForm" class="row g-3" (ngSubmit)="submit()">
   <div class="col-12">
     <label for="inputNome" class="form-label">Nome</label>

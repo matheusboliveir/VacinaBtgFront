@@ -6,6 +6,7 @@ import { peopleResolver } from './resolvers/people.resolver';
 import { vacinesResolver } from './resolvers/vacines.resolver';
 import { EditVacineComponent } from './pages/edit-vacine/edit-vacine.component';
 import { EditPeopleComponent } from './pages/edit-people/edit-people.component';
+import { CardVacineComponent } from './pages/card-vacine/card-vacine.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,10 @@ export const routes: Routes = [
       {
         path: 'add',
         component: EditPeopleComponent,
+      },
+      {
+        path: 'vacine-card',
+        component: CardVacineComponent,
       },
     ],
   },
