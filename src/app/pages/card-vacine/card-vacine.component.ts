@@ -52,7 +52,6 @@ export class CardVacineComponent implements OnInit {
       );
       resp.forEach((vacine, i) => {
         vacine.doses.forEach((dose) => {
-          console.log(vacine.nome, dose.numero - 1, i, DoseTypeEnum[dose.tipo]);
           if (dose.tipo === DoseTypeEnum.COMUM) {
             this.doses[dose.numero - 1][i] = true;
           } else {
@@ -60,7 +59,6 @@ export class CardVacineComponent implements OnInit {
           }
         });
       });
-      console.log(this.doses);
     });
   }
 }
