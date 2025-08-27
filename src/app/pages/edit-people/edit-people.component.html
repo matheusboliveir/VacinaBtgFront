@@ -1,0 +1,106 @@
+<h2>
+  {{ person ? "Editar pessoa: " + person.nome : "Cadastrar pessoa" }}
+</h2>
+
+@if (person) {
+<button (click)="deletePerson()" type="button" class="mt-5 btn btn-danger">
+  Deletar
+</button>
+}
+
+<form [formGroup]="personForm" class="mt-5 row g-3" (ngSubmit)="submit()">
+  <div class="col-12">
+    <label for="inputNome" class="form-label">Nome</label>
+    <input
+      formControlName="nome"
+      type="text"
+      class="form-control"
+      id="inputNome"
+    />
+  </div>
+  <div class="col-12">
+    <select formControlName="sexo" class="form-select" aria-label="Sexo">
+      <option selected>Sexo</option>
+      <option [value]="0">MASCULINO</option>
+      <option [value]="1">FEMININO</option>
+      <option [value]="2">OUTRO</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <label for="inputIdade" class="form-label"> Idade </label>
+    <input
+      formControlName="idade"
+      type="number"
+      class="form-control"
+      id="inputIdade"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary col-12">
+      {{ person ? "Editar" : "Cadastrar" }}
+    </button>
+  </div>
+</form>
+
+<div *ngIf="person" class="mt-5 col-12">
+  <h3>Adicionar Dose</h3>
+  <form
+    [formGroup]="doseForm"
+    (ngSubmit)="submitDose()"
+    class="row g-3 mt-2 mb-5"
+  >
+    <div class="col-12">
+      <select formControlName="tipo" class="form-select" aria-label="tipo">
+        <option selected>Tipo Dose</option>
+        <option [value]="doseType.COMUM">COMUM</option>
+        <option [value]="doseType.REFORCO">REFORCO</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <select
+        formControlName="vacinaId"
+        class="form-select"
+        aria-label="vacinaId"
+      >
+        <option selected>Escolha Vacina</option>
+        @for (vacine of vacines; track $index) {
+        <option [value]="vacine.id">{{ vacine.nome }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary col-12">
+        Cadastrar Dose
+      </button>
+    </div>
+  </form>
+  <h3 class="mb-2">Lista Doses</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Tipo</th>
+        <th scope="col">vacina</th>
+        <th scope="col">numero</th>
+        <th scope="col">ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dose of doses; track $index) {
+      <tr>
+        <td>{{ doseType[dose.tipo] }}</td>
+        <td>{{ dose.vacina }}</td>
+        <td>{{ dose.numero }}</td>
+        <td>
+          <button
+            (click)="deleteDose(dose.id)"
+            type="button"
+            class="btn btn-danger"
+          >
+            Deletar
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

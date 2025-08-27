@@ -1,0 +1,74 @@
+<h2 class="mb-5">
+  {{ vacine ? "Editar vacina: " + vacine.nome : "Cadastrar vacina" }}
+</h2>
+
+@if (vacine) {
+<button (click)="deleteVacine()" type="button" class="mb-5 btn btn-danger">
+  Deletar
+</button>
+}
+
+<form [formGroup]="vacineForm" class="row g-3" (ngSubmit)="submit()">
+  <div class="col-12">
+    <label for="inputNome" class="form-label">Nome</label>
+    <input
+      formControlName="nome"
+      type="text"
+      class="form-control"
+      id="inputNome"
+    />
+  </div>
+  <div class="col-12">
+    <select
+      formControlName="tipo"
+      class="form-select"
+      aria-label="Tipo de Vacina"
+    >
+      <option selected>Tipo de Vacina</option>
+      <option [value]="0">CALENDARIO NACIONAL</option>
+      <option [value]="1">ANTI RABICA</option>
+      <option [value]="2">BCG CONTATO</option>
+      <option [value]="3">PARTICULAR</option>
+      <option [value]="4">OUTRO</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <div class="form-check form-switch">
+      <input
+        formControlName="semLimiteDose"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="switchLimiteDose"
+      />
+      <label class="form-check-label" for="switchLimiteDose">
+        Sem Limite de doses
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="inputDose" class="form-label">Numero de Doses</label>
+    <input
+      formControlName="numeroDose"
+      type="number"
+      class="form-control"
+      id="inputDose"
+    />
+  </div>
+  <div class="col-12">
+    <label for="inputReforco" class="form-label">
+      Numero de Doses de Reforço
+    </label>
+    <input
+      formControlName="numeroReforco"
+      type="number"
+      class="form-control"
+      id="inputReforco"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary col-12">
+      {{ vacine ? "Editar" : "Cadastrar" }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between mb-5">
+  <h2>Listagem de {{ title }}</h2>
+  <button routerLink="add" type="button" class="btn btn-success">
+    Cadastrar
+  </button>
+</div>
+
+<table class="table table-striped table-fixed">
+  <thead>
+    <tr>
+      @for (column of tableColumns; track $index) {
+      <th scope="col">{{ column.label }}</th>
+      } @if (tableActions) {
+      <th>Ações</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of tableItems; track $index) {
+    <tr>
+      @for (column of tableColumns; track $index) {
+      <td>
+        {{
+          column.formatter
+            ? column.formatter(item[column.key])
+            : item[column.key]
+        }}
+      </td>
+      } @if (tableActions) {
+      <td class="d-flex gap-2">
+        @for (action of tableActions; track $index) {
+        <button
+          type="button"
+          [state]="{ item }"
+          [routerLink]="action.link"
+          class="btn btn-{{ action.color }}"
+        >
+          {{ action.name }}
+        </button>
+        }
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
